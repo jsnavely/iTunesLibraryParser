@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace ITunesLibraryParser {
     internal class PodcastParser {
         internal IEnumerable<Podcast> ParsePodcasts(IEnumerable<Track> tracks) {
-            var feedList = tracks.Where(t => t.IsPodcast && string.Equals(t.TrackType,"URL"));
+            var albumGroups = tracks.Where(t => t.IsPodcast).GroupBy(t => t.Album);
             var feeds = new List<Podcast>();
-            foreach (var feed in feedList) {
-                var episodes = tracks.Where(t => t.IsPodcast && string.Equals(t.TrackType, "File") && string.Equals(t.Album, feed.Album));
+            foreach (var albumGroup in albumGroups.OrderBy(a => a.Key)) {
+                var feed = albumGroup.Where(a => string.IsNullOrEmpty(a.Kind)).FirstOrDefault();
+                var episodes = albumGroup.Where(a => !string.IsNullOrEmpty(a.Kind));
                 feeds.Add(CreatePodcast(feed, episodes));
             }
             return feeds;
