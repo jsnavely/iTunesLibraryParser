@@ -17,6 +17,7 @@ namespace ITunesLibraryParser {
         private static Track CreateTrack(XElement trackElement) {
             return new Track {
                 TrackId = Int32.Parse(XElementParser.ParseStringValue(trackElement, "Track ID")),
+                TrackType = XElementParser.ParseStringValue(trackElement, "Track Type"),
                 Name = XElementParser.ParseStringValue(trackElement, "Name"),
                 Artist = XElementParser.ParseStringValue(trackElement, "Artist"),
                 AlbumArtist = XElementParser.ParseStringValue(trackElement, "Album Artist"),
@@ -50,6 +51,7 @@ namespace ITunesLibraryParser {
                 AlbumRatingComputed = XElementParser.ParseBoolean(trackElement, "Album Rating Computed"),
                 IsPodcast = XElementParser.ParseBoolean(trackElement, "Podcast"),
                 IsPurchased = XElementParser.ParseBoolean(trackElement, "Purchased"),
+                IsUnplayed = XElementParser.ParseBoolean(trackElement, "Unplayed"),
                 Comments = XElementParser.ParseStringValue(trackElement, "Comments"),
                 SortName = XElementParser.ParseStringValue(trackElement, "Sort Name"),
                 SortAlbum = XElementParser.ParseStringValue(trackElement, "Sort Album"),

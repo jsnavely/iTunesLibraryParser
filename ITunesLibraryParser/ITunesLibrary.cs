@@ -7,9 +7,11 @@ namespace ITunesLibraryParser {
         private readonly IFileSystem fileSystem;
         private readonly TrackParser trackParser;
         private readonly AlbumParser albumParser;
+        private readonly PodcastParser podcastParser;
         private IEnumerable<Track> tracks;
         private IEnumerable<Playlist> playlists;
         private IEnumerable<Album> albums;
+        private IEnumerable<Podcast> podcasts;
 
         public ITunesLibrary(string xmlLibraryFileLocation) : this(xmlLibraryFileLocation, new FileSystemWrapper()) { }
 
@@ -18,6 +20,7 @@ namespace ITunesLibraryParser {
             this.fileSystem = fileSystem;
             this.trackParser = new TrackParser();
             this.albumParser = new AlbumParser();
+            this.podcastParser = new PodcastParser();
         }
 
         public IEnumerable<Track> Tracks => tracks ?? (tracks = trackParser.ParseTracks(ReadTextFromLibraryFile()));
@@ -29,5 +32,7 @@ namespace ITunesLibraryParser {
         public IEnumerable<Playlist> Playlists => playlists ?? (playlists = new PlaylistParser(Tracks).ParsePlaylists(ReadTextFromLibraryFile()));
 
         public IEnumerable<Album> Albums => albums ?? (albums = albumParser.ParseAlbums(Tracks));
+
+        public IEnumerable<Podcast> Podcasts => podcasts ?? (podcasts = podcastParser.ParsePodcasts(Tracks));
     }
 }

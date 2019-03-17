@@ -6,7 +6,7 @@ namespace ITunesLibraryParser {
         private static string CompilationArtistName = "Various Artists";
 
         internal IEnumerable<Album> ParseAlbums(IEnumerable<Track> tracks) {
-            var albumGroups = tracks.GroupBy(t => t.Album);
+            var albumGroups = tracks.Where(t => !t.IsPodcast).GroupBy(t => t.Album);
             var albums = new List<Album>();
             foreach (var albumGroup in albumGroups) {
                 if (MultipleAlbumsWithSameNameExist(albumGroup) && !IsCompilation(albumGroup))
@@ -44,9 +44,9 @@ namespace ITunesLibraryParser {
         }
 
         private static string GetArtistName(IEnumerable<Track> tracks) {
-            if (tracks.Any(t => !string.IsNullOrWhiteSpace(t.AlbumArtist)))
+            if (tracks.Any(t => !t.IsPodcast && !string.IsNullOrWhiteSpace(t.AlbumArtist)))
                  return tracks.Select(t => t.AlbumArtist).First(aa => !string.IsNullOrWhiteSpace(aa));
-            return tracks.Any(t => t.PartOfCompilation) ? CompilationArtistName : tracks.Select(t => t.Artist).First();
+            return tracks.Any(t => !t.IsPodcast && t.PartOfCompilation) ? CompilationArtistName : tracks.Select(t => t.Artist).First();
         }
     }
 }

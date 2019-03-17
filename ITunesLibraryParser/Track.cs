@@ -3,6 +3,7 @@
 namespace ITunesLibraryParser {
     public class Track : IEquatable<Track> {
         public int TrackId { get; set; }
+        public string TrackType { get; set; }
         public string Name { get; set; }
         public string Artist { get; set; }
         public string AlbumArtist { get; set; }
@@ -36,6 +37,7 @@ namespace ITunesLibraryParser {
         public bool AlbumRatingComputed { get; set; }
         public bool IsPodcast { get; set; }
         public bool IsPurchased { get; set; }
+        public bool IsUnplayed { get; set; }
         public string Comments { get; set; }
         public string SortName { get; set; }
         public string SortAlbum { get; set; }
@@ -53,7 +55,7 @@ namespace ITunesLibraryParser {
         public bool Equals(Track other) {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return TrackId == other.TrackId && string.Equals(Name, other.Name) && 
+            return TrackId == other.TrackId && string.Equals(TrackType, other.TrackType) && string.Equals(Name, other.Name) && 
                    string.Equals(Artist, other.Artist) && string.Equals(AlbumArtist, other.AlbumArtist) 
                    && string.Equals(Composer, other.Composer) && string.Equals(Album, other.Album) && 
                    string.Equals(Genre, other.Genre) && string.Equals(Grouping, other.Grouping) &&
@@ -66,8 +68,9 @@ namespace ITunesLibraryParser {
                    ReleaseDate.Equals(other.ReleaseDate) && PartOfCompilation == other.PartOfCompilation && Location == other.Location &&
                    Rating == other.Rating && RatingComputed == other.RatingComputed && AlbumRating == other.AlbumRating &&
                    AlbumRatingComputed == other.AlbumRatingComputed && IsPodcast == other.IsPodcast &&
-                   IsPurchased == other.IsPurchased && Comments == other.Comments && SortName == other.SortName &&
-                   SortAlbum == other.SortAlbum && SortArtist == other.SortArtist && PersistentId == other.PersistentId;
+                   IsPurchased == other.IsPurchased && IsUnplayed == other.IsUnplayed && Comments == other.Comments &&
+                   SortName == other.SortName && SortAlbum == other.SortAlbum && SortArtist == other.SortArtist &&
+                   PersistentId == other.PersistentId;
         }
 
         public override bool Equals(object obj) {
@@ -80,6 +83,7 @@ namespace ITunesLibraryParser {
         public override int GetHashCode() {
             unchecked {
                 var hashCode = TrackId;
+                hashCode = (hashCode * 397) ^ (TrackType != null ? TrackType.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Artist != null ? Artist.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (AlbumArtist != null ? AlbumArtist.GetHashCode() : 0);
@@ -113,6 +117,7 @@ namespace ITunesLibraryParser {
                 hashCode = (hashCode * 397) ^ AlbumRatingComputed.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsPodcast.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsPurchased.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsUnplayed.GetHashCode();
                 hashCode = (hashCode * 397) ^ (Comments != null ? Comments.GetHashCode(): 0);
                 hashCode = (hashCode * 397) ^ (SortName != null ? SortName.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (SortAlbum != null ? SortAlbum.GetHashCode() : 0);

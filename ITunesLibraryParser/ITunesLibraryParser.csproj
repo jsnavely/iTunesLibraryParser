@@ -50,6 +50,8 @@
     <Compile Include="LibraryItemParserBase.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="PlaylistParser.cs" />
+    <Compile Include="Podcast.cs" />
+    <Compile Include="PodcastParser.cs" />
     <Compile Include="TimeConvert.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
