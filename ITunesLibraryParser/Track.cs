@@ -26,6 +26,7 @@ namespace ITunesLibraryParser {
         public DateTime? DateAdded { get; set; }
         public int? BitRate { get; set; }
         public int? SampleRate { get; set; }
+        public int? VolumeAdjustment { get; set; }
         public int? BPM { get; set; }
         public int? PlayCount { get; set; }
         public DateTime? PlayDate { get; set; }
@@ -46,6 +47,9 @@ namespace ITunesLibraryParser {
         public bool IsDisabled { get; set; }
         public bool IsMovie { get; set; }
         public bool IsTVShow { get; set; }
+        public bool IsMusicVideo { get; set; }
+        public bool IsLoved { get; set; }
+        public bool IsAlbumLoved { get; set; }
         public bool HasVideo { get; set; }
         public string Comments { get; set; }
         public string Series { get; set; }
@@ -78,15 +82,17 @@ namespace ITunesLibraryParser {
                    TrackNumber == other.TrackNumber && TrackCount == other.TrackCount && DiscNumber == other.DiscNumber &&
                    DiscCount == other.DiscCount && Season == other.Season && EpisodeOrder == other.EpisodeOrder && ArtworkCount == other.ArtworkCount &&
                    Year == other.Year && DateModified.Equals(other.DateModified) && DateAdded.Equals(other.DateAdded) && 
-                   BitRate == other.BitRate && SampleRate == other.SampleRate && BPM == other.BPM && PlayCount == other.PlayCount && 
+                   BitRate == other.BitRate && SampleRate == other.SampleRate && VolumeAdjustment == other.VolumeAdjustment && BPM == other.BPM &&
+                   PlayCount == other.PlayCount && 
                    PlayDate.Equals(other.PlayDate) && SkipCount.Equals(other.SkipCount) && SkipDate.Equals(other.SkipDate) &&
                    ReleaseDate.Equals(other.ReleaseDate) && PartOfCompilation == other.PartOfCompilation && Location == other.Location &&
                    Rating == other.Rating && RatingComputed == other.RatingComputed && AlbumRating == other.AlbumRating &&
                    AlbumRatingComputed == other.AlbumRatingComputed && IsPodcast == other.IsPodcast && IsPurchased == other.IsPurchased &&
                    IsUnplayed == other.IsUnplayed && IsExplicit == other.IsExplicit && IsClean == other.IsClean && IsDisabled == other.IsDisabled &&
-                   IsMovie == other.IsMovie && IsTVShow == other.IsTVShow && HasVideo == other.HasVideo && Comments == other.Comments &&
-                   Series == other.Series && Episode == other.Episode && ContentRating == other.ContentRating && SortName == other.SortName &&
-                   SortAlbum == other.SortAlbum && SortArtist == other.SortArtist && SortAlbumArtist == other.SortAlbumArtist &&
+                   IsMovie == other.IsMovie && IsTVShow == other.IsTVShow && IsMusicVideo == other.IsMusicVideo && IsLoved == other.IsLoved &&
+                   IsAlbumLoved == other.IsAlbumLoved && HasVideo == other.HasVideo &&
+                   Comments == other.Comments && Series == other.Series && Episode == other.Episode && ContentRating == other.ContentRating &&
+                   SortName == other.SortName && SortAlbum == other.SortAlbum && SortArtist == other.SortArtist && SortAlbumArtist == other.SortAlbumArtist &&
                    SortComposer == other.SortComposer && SortSeries == other.SortSeries && PersistentId == other.PersistentId;
         }
 
@@ -123,6 +129,7 @@ namespace ITunesLibraryParser {
                 hashCode = (hashCode * 397) ^ DateAdded.GetHashCode();
                 hashCode = (hashCode * 397) ^ BitRate.GetHashCode();
                 hashCode = (hashCode * 397) ^ SampleRate.GetHashCode();
+                hashCode = (hashCode * 397) ^ VolumeAdjustment.GetHashCode();
                 hashCode = (hashCode * 397) ^ BPM.GetHashCode();
                 hashCode = (hashCode * 397) ^ PlayCount.GetHashCode();
                 hashCode = (hashCode * 397) ^ PlayDate.GetHashCode();
@@ -143,7 +150,10 @@ namespace ITunesLibraryParser {
                 hashCode = (hashCode * 397) ^ IsDisabled.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsMovie.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsTVShow.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsMusicVideo.GetHashCode();
                 hashCode = (hashCode * 397) ^ HasVideo.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsLoved.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsAlbumLoved.GetHashCode();
                 hashCode = (hashCode * 397) ^ (Comments != null ? Comments.GetHashCode(): 0);
                 hashCode = (hashCode * 397) ^ (Series != null ? Series.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Episode != null ? Episode.GetHashCode() : 0);
