@@ -20,10 +20,13 @@ namespace ITunesLibraryParser {
         public int? DiscCount { get; set; }
         public int? ArtworkCount { get; set; }
         public int? Year { get; set; }
+        public int? Season { get; set; }
+        public int? EpisodeOrder { get; set; }
         public DateTime? DateModified { get; set; }
         public DateTime? DateAdded { get; set; }
         public int? BitRate { get; set; }
         public int? SampleRate { get; set; }
+        public int? BPM { get; set; }
         public int? PlayCount { get; set; }
         public DateTime? PlayDate { get; set; }
         public int? SkipCount { get; set; }
@@ -38,10 +41,22 @@ namespace ITunesLibraryParser {
         public bool IsPodcast { get; set; }
         public bool IsPurchased { get; set; }
         public bool IsUnplayed { get; set; }
+        public bool IsExplicit { get; set; }
+        public bool IsClean { get; set; }
+        public bool IsDisabled { get; set; }
+        public bool IsMovie { get; set; }
+        public bool IsTVShow { get; set; }
+        public bool HasVideo { get; set; }
         public string Comments { get; set; }
+        public string Series { get; set; }
+        public string Episode { get; set; }
+        public string ContentRating { get; set; }
         public string SortName { get; set; }
         public string SortAlbum { get; set; }
         public string SortArtist { get; set; }
+        public string SortAlbumArtist { get; set; }
+        public string SortComposer { get; set; }
+        public string SortSeries { get; set; }
         public string PersistentId { get; set; }
 
         public override string ToString() {
@@ -61,16 +76,18 @@ namespace ITunesLibraryParser {
                    string.Equals(Genre, other.Genre) && string.Equals(Grouping, other.Grouping) &&
                    string.Equals(Kind, other.Kind) && Size == other.Size && string.Equals(PlayingTime, other.PlayingTime) &&
                    TrackNumber == other.TrackNumber && TrackCount == other.TrackCount && DiscNumber == other.DiscNumber &&
-                   DiscCount == other.DiscCount && ArtworkCount == other.ArtworkCount &&
+                   DiscCount == other.DiscCount && Season == other.Season && EpisodeOrder == other.EpisodeOrder && ArtworkCount == other.ArtworkCount &&
                    Year == other.Year && DateModified.Equals(other.DateModified) && DateAdded.Equals(other.DateAdded) && 
-                   BitRate == other.BitRate && SampleRate == other.SampleRate && PlayCount == other.PlayCount && 
+                   BitRate == other.BitRate && SampleRate == other.SampleRate && BPM == other.BPM && PlayCount == other.PlayCount && 
                    PlayDate.Equals(other.PlayDate) && SkipCount.Equals(other.SkipCount) && SkipDate.Equals(other.SkipDate) &&
                    ReleaseDate.Equals(other.ReleaseDate) && PartOfCompilation == other.PartOfCompilation && Location == other.Location &&
                    Rating == other.Rating && RatingComputed == other.RatingComputed && AlbumRating == other.AlbumRating &&
-                   AlbumRatingComputed == other.AlbumRatingComputed && IsPodcast == other.IsPodcast &&
-                   IsPurchased == other.IsPurchased && IsUnplayed == other.IsUnplayed && Comments == other.Comments &&
-                   SortName == other.SortName && SortAlbum == other.SortAlbum && SortArtist == other.SortArtist &&
-                   PersistentId == other.PersistentId;
+                   AlbumRatingComputed == other.AlbumRatingComputed && IsPodcast == other.IsPodcast && IsPurchased == other.IsPurchased &&
+                   IsUnplayed == other.IsUnplayed && IsExplicit == other.IsExplicit && IsClean == other.IsClean && IsDisabled == other.IsDisabled &&
+                   IsMovie == other.IsMovie && IsTVShow == other.IsTVShow && HasVideo == other.HasVideo && Comments == other.Comments &&
+                   Series == other.Series && Episode == other.Episode && ContentRating == other.ContentRating && SortName == other.SortName &&
+                   SortAlbum == other.SortAlbum && SortArtist == other.SortArtist && SortAlbumArtist == other.SortAlbumArtist &&
+                   SortComposer == other.SortComposer && SortSeries == other.SortSeries && PersistentId == other.PersistentId;
         }
 
         public override bool Equals(object obj) {
@@ -98,12 +115,15 @@ namespace ITunesLibraryParser {
                 hashCode = (hashCode * 397) ^ TrackCount.GetHashCode();
                 hashCode = (hashCode * 397) ^ DiscNumber.GetHashCode();
                 hashCode = (hashCode * 397) ^ DiscCount.GetHashCode();
+                hashCode = (hashCode * 397) ^ Season.GetHashCode();
+                hashCode = (hashCode * 397) ^ EpisodeOrder.GetHashCode();
                 hashCode = (hashCode * 397) ^ ArtworkCount.GetHashCode();
                 hashCode = (hashCode * 397) ^ Year.GetHashCode();
                 hashCode = (hashCode * 397) ^ DateModified.GetHashCode();
                 hashCode = (hashCode * 397) ^ DateAdded.GetHashCode();
                 hashCode = (hashCode * 397) ^ BitRate.GetHashCode();
                 hashCode = (hashCode * 397) ^ SampleRate.GetHashCode();
+                hashCode = (hashCode * 397) ^ BPM.GetHashCode();
                 hashCode = (hashCode * 397) ^ PlayCount.GetHashCode();
                 hashCode = (hashCode * 397) ^ PlayDate.GetHashCode();
                 hashCode = (hashCode * 397) ^ SkipCount.GetHashCode();
@@ -118,10 +138,22 @@ namespace ITunesLibraryParser {
                 hashCode = (hashCode * 397) ^ IsPodcast.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsPurchased.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsUnplayed.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsExplicit.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsClean.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsDisabled.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsMovie.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsTVShow.GetHashCode();
+                hashCode = (hashCode * 397) ^ HasVideo.GetHashCode();
                 hashCode = (hashCode * 397) ^ (Comments != null ? Comments.GetHashCode(): 0);
+                hashCode = (hashCode * 397) ^ (Series != null ? Series.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Episode != null ? Episode.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (ContentRating != null ? ContentRating.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (SortName != null ? SortName.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (SortAlbum != null ? SortAlbum.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (SortArtist != null ? SortArtist.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (SortAlbumArtist != null ? SortAlbumArtist.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (SortComposer != null ? SortComposer.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (SortSeries != null ? SortSeries.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (PersistentId != null ? PersistentId.GetHashCode(): 0);
                 return hashCode;
             }
