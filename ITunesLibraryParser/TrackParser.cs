@@ -64,6 +64,8 @@ namespace ITunesLibraryParser {
                 IsMusicVideo = XElementParser.ParseBoolean(trackElement, "Music Video"),
                 IsLoved = XElementParser.ParseBoolean(trackElement, "Loved"),
                 IsAlbumLoved = XElementParser.ParseBoolean(trackElement, "Album Loved"),
+                IsDisliked = XElementParser.ParseBoolean(trackElement, "Disliked"),
+                IsAlbumDisliked = XElementParser.ParseBoolean(trackElement, "AlbumDisliked"),
                 HasVideo = XElementParser.ParseBoolean(trackElement, "Has Video"),
                 Comments = XElementParser.ParseStringValue(trackElement, "Comments"),
                 Series = XElementParser.ParseStringValue(trackElement, "Series"),

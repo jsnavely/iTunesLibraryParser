@@ -50,6 +50,8 @@ namespace ITunesLibraryParser {
         public bool IsMusicVideo { get; set; }
         public bool IsLoved { get; set; }
         public bool IsAlbumLoved { get; set; }
+        public bool IsDisliked { get; set; }
+        public bool IsAlbumDisliked { get; set; }
         public bool HasVideo { get; set; }
         public string Comments { get; set; }
         public string Series { get; set; }
@@ -90,7 +92,7 @@ namespace ITunesLibraryParser {
                    AlbumRatingComputed == other.AlbumRatingComputed && IsPodcast == other.IsPodcast && IsPurchased == other.IsPurchased &&
                    IsUnplayed == other.IsUnplayed && IsExplicit == other.IsExplicit && IsClean == other.IsClean && IsDisabled == other.IsDisabled &&
                    IsMovie == other.IsMovie && IsTVShow == other.IsTVShow && IsMusicVideo == other.IsMusicVideo && IsLoved == other.IsLoved &&
-                   IsAlbumLoved == other.IsAlbumLoved && HasVideo == other.HasVideo &&
+                   IsAlbumLoved == other.IsAlbumLoved && IsDisliked == other.IsDisliked && IsAlbumDisliked == other.IsAlbumDisliked && HasVideo == other.HasVideo &&
                    Comments == other.Comments && Series == other.Series && Episode == other.Episode && ContentRating == other.ContentRating &&
                    SortName == other.SortName && SortAlbum == other.SortAlbum && SortArtist == other.SortArtist && SortAlbumArtist == other.SortAlbumArtist &&
                    SortComposer == other.SortComposer && SortSeries == other.SortSeries && PersistentId == other.PersistentId;
@@ -154,6 +156,8 @@ namespace ITunesLibraryParser {
                 hashCode = (hashCode * 397) ^ HasVideo.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsLoved.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsAlbumLoved.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsDisliked.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsAlbumDisliked.GetHashCode();
                 hashCode = (hashCode * 397) ^ (Comments != null ? Comments.GetHashCode(): 0);
                 hashCode = (hashCode * 397) ^ (Series != null ? Series.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Episode != null ? Episode.GetHashCode() : 0);
