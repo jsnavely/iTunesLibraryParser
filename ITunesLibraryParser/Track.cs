@@ -2,13 +2,35 @@
 
 namespace ITunesLibraryParser {
     public class Track : IEquatable<Track> {
+        private string _artist;
+        private string _albumArtist;
+        private string _album;
+
         public int TrackId { get; set; }
         public string TrackType { get; set; }
         public string Name { get; set; }
-        public string Artist { get; set; }
-        public string AlbumArtist { get; set; }
+        public string Artist {
+            get => _artist;
+            set {
+                _artist = value;
+                GroupArtist = value?.TrimStart();
+            }
+        }
+        public string AlbumArtist {
+            get => _albumArtist;
+            set {
+                _albumArtist = value;
+                GroupAlbumArtist = value?.TrimStart();
+            }
+        }
         public string Composer { get; set; }
-        public string Album { get; set; }
+        public string Album {
+            get => _album;
+            set {
+                _album = value;
+                GroupAlbum = value?.TrimStart();
+            }
+        }
         public string Genre { get; set; }
         public string Grouping { get; set; }
         public string Kind { get; set; }
@@ -64,6 +86,10 @@ namespace ITunesLibraryParser {
         public string SortComposer { get; set; }
         public string SortSeries { get; set; }
         public string PersistentId { get; set; }
+
+        public string GroupAlbum { get; private set; }
+        public string GroupArtist { get; private set; }
+        public string GroupAlbumArtist { get; private set; }
 
         public override string ToString() {
             return $"Artist: {Artist} - Track: {Name} - Album: {Album}";
