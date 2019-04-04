@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ITunesLibraryParser {
     public class ITunesLibrary {
@@ -31,7 +32,9 @@ namespace ITunesLibraryParser {
 
         public IEnumerable<Playlist> Playlists => playlists ?? (playlists = new PlaylistParser(Tracks).ParsePlaylists(ReadTextFromLibraryFile()));
 
-        public IEnumerable<Album> Albums => albums ?? (albums = albumParser.ParseAlbums(Tracks));
+        public IEnumerable<Track> Music => Playlists.Where(p => p.Name == "Music").FirstOrDefault()?.Tracks;
+
+        public IEnumerable<Album> Albums => albums ?? (albums = albumParser.ParseAlbums(Music));
 
         public IEnumerable<Podcast> Podcasts => podcasts ?? (podcasts = podcastParser.ParsePodcasts(Tracks));
     }
