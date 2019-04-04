@@ -9,9 +9,12 @@ namespace ITunesLibraryParser {
         private static string UnknownAlbumName = "Unknown Album";
 
         internal IEnumerable<Album> ParseAlbums(IEnumerable<Track> tracks) {
+            var albums = new List<Album>();
+            if (tracks == null)
+                return albums;
+
             var albumGroups = tracks.GroupBy(t => t.GroupAlbum,
                 StringComparer.InvariantCultureIgnoreCase);
-            var albums = new List<Album>();
             foreach (var albumGroup in albumGroups) {
                 SubGroupByAlbumArtistToCreateAlbums(albumGroup, albums);
             }

@@ -32,7 +32,7 @@ namespace ITunesLibraryParser {
 
         public IEnumerable<Playlist> Playlists => playlists ?? (playlists = new PlaylistParser(Tracks).ParsePlaylists(ReadTextFromLibraryFile()));
 
-        public IEnumerable<Track> Music => Playlists.Where(p => p.Name == "Music").FirstOrDefault()?.Tracks;
+        public IEnumerable<Track> Music => Playlists.Where(p => p.Name == "Music").FirstOrDefault()?.Tracks ?? Tracks;
 
         public IEnumerable<Album> Albums => albums ?? (albums = albumParser.ParseAlbums(Music));
 
